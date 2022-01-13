@@ -1,3 +1,4 @@
+import React, {  useState } from 'react';
 import ExpenseDate from './ExpenseDate';
 import Card from '../UI/Card';
 import './ExpenseItem.css';
@@ -5,6 +6,17 @@ import './ExpenseItem.css';
 
 // function
 function ExpenseItem(props) {
+    // allows to define values as state where changes to values are reflected in component function
+    // first value in array is what it is currently, second is what you want it to change to
+    const [title, setTitle] = useState(props.title);
+
+    // function logs when button is being clicked
+    const clickHandler = () => {
+        // telling react you want to assign a new value
+        setTitle('Updated!');
+        console.log(title);
+    };
+
     return (
     <Card className="expense-item">
         <ExpenseDate date={props.date} />
@@ -12,7 +24,8 @@ function ExpenseItem(props) {
             <h2>{props.title}</h2>
             <div className="expense-item__price">${props.amount}</div>
         </div>
-    </Card>
+        <button onClick = {clickHandler}>Change Title</button>
+     </Card>
     );
 }
 
