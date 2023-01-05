@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
@@ -57,7 +57,7 @@ const ExpenseForm = () => {
             amount: enteredAmount,
             date: new Date(enteredDate)
         }
-        console.log(expenseData);
+        props.onSaveExpenseData(expenseData);
         // WHen form is submitted set back to empty string like initial state(override what user input after form is submitted and 
         // clear input in input bar)
         setEnteredTitle('');
