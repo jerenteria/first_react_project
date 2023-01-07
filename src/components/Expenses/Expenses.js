@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
 import './Expenses.css';
 import ExpensesFilter from './ExpensesFilter';
+import ExpenseList from './ExpensesList'
 
 function Expenses(props) {
   const [filteredYear, setFilteredYear] = useState('2020');
@@ -20,17 +20,7 @@ function Expenses(props) {
         {/* render items dynamically */}
         <Card className='expenses'>
           <ExpensesFilter selected={filteredYear} onChangeFilter = { filterChangeHandler }/>
-            {filteredExpenses.map((expense) => ( 
-            <ExpenseItem 
-            //  key will tell react where the new items should go otherwise react will add it at the end, loop through all items
-            // in list change the first item to be the new item and change all the other items in the list to match what it was before
-            // this is not good for time complexity 
-            key = {expense.id}
-            title={expense.title} 
-            amount={expense.amount}
-            date={expense.date}
-            />
-          ))}
+          <ExpenseList items = {filteredExpenses}/>
         </Card>
       </div>
     );
